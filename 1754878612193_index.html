@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoConnect Sales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Basic & Global Styles --- */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: #ffffff;
+            padding: 1rem 0;
+            border-bottom: 1px solid #dee2e6;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+
+        .nav-link a:hover, .nav-link a.active {
+            color: #007bff;
+            border-bottom-color: #007bff;
+        }
+
+        /* --- Page Content --- */
+        .page {
+            padding: 3rem 0;
+        }
+        
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #343a40;
+        }
+
+        /* --- Home Page Specific --- */
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background-color: 
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0 0 1rem;
+            color: #ffffff;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp1926464.jpg&f=1&nofb=1&ipt=3fd4e52398cdfcec190390b8a79cd084e7a7b7676adcba8920b8fa0748395364') no-repeat center center/cover;
+        }
+
+        /* --- Car Card Styling --- */
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .car-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .car-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .car-info h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .car-info .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+
+        .car-info .details {
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* --- About & Contact Page --- */
+        .content-box {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+        
+        /* --- General Utility --- */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header and Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="nav-logo">AutoConnect</a>
+                <ul class="nav-links">
+                    <li class="nav-link"><a href="#" onclick="showPage('home')" class="active">Home</a></li>
+                    <li class="nav-link"><a href="#" onclick="showPage('cars')">Cars</a></li>
+                    <li class="nav-link"><a href="#" onclick="showPage('about')">About</a></li>
+                    <li class="nav-link"><a href="#" onclick="showPage('contact')">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Home Page -->
+        <section id="home" class="page">
+            <div class="hero-section text-white h-[60vh] flex items-center justify-center">
+            <div class="hero">
+                <h1>Find Your Dream Car</h1>
+                <p>Browse our collection of high-quality, pre-owned vehicles.</p>
+            </div>
+            </div>
+            <h2 class="page-title" style="text-align: left; font-size: 2rem;">Featured Listings</h2>
+            <div class="listings-grid">
+                <!-- Featured Car 1 -->
+                <div class="car-card">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftoyotaconnect.co.za%2Fwp-content%2Fuploads%2F2023%2F05%2FFeature_1200x790_Toyota-Urban-Cruiser.jpg&f=1&nofb=1&ipt=adb7093c6e368829406765842dc5cc529ae274ffbc670f9a9fb5f62d7462e17b" alt="Sedan">
+                    <div class="car-info">
+                        <h3>2022 Urban Cruiser</h3>
+                        <p class="price">₹9.02 Lacks</p>
+                        <p class="details">A perfect car for city driving. Excellent fuel economy and modern features.</p>
+                        <button class="btn" onclick="showPage('cars')">View Details</button>
+                    </div>
+                </div>
+                <!-- Featured Car 2 -->
+                <div class="car-card">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2F-5f-E6C-CTI%2Fmaxresdefault.jpg&f=1&nofb=1&ipt=0eac3ab0bfc08ea4308ca620963da8213ad5eaecc519096bae95d4ae022a4247" alt="SUV">
+                    <div class="car-info">
+                        <h3>2021 Adventure SUV</h3>
+                        <p class="price">₹36.05Lacks</p>
+                        <p class="details">Ready for any adventure, this SUV has ample space and off-road capability.</p>
+                        <button class="btn" onclick="showPage('cars')">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cars Page -->
+        <section id="cars" class="page hidden">
+            <h1 class="page-title">Our Vehicle Collection</h1>
+            <div class="listings-grid">
+                <!-- Car 1 -->
+                <div class="car-card">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftoyotaconnect.co.za%2Fwp-content%2Fuploads%2F2023%2F05%2FFeature_1200x790_Toyota-Urban-Cruiser.jpg&f=1&nofb=1&ipt=adb7093c6e368829406765842dc5cc529ae274ffbc670f9a9fb5f62d7462e17b" alt="Sedan">
+                    <div class="car-info">
+                        <h3>2022 Urban Cruiser</h3>
+                        <p class="price">₹9.02 Lacks</p>
+                        <p class="details">Mileage: 30 - 40Kms | Automatic | 4-Door</p>
+                        <button class="btn" onclick="alert('Contact us at sales@autoconnect.com for more info!')">Contact Seller</button>
+                    </div>
+                </div>
+                <!-- Car 2 -->
+                <div class="car-card">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2F-5f-E6C-CTI%2Fmaxresdefault.jpg&f=1&nofb=1&ipt=0eac3ab0bfc08ea4308ca620963da8213ad5eaecc519096bae95d4ae022a4247" alt="SUV">
+                    <div class="car-info">
+                        <h3>2021 Adventure SUV</h3>
+                        <p class="price">₹36.05 Lacks</p>
+                        <p class="details">Mileage: 10.3 - 14.6Kms | Automatic | 5-Door</p>
+                        <button class="btn" onclick="alert('Contact us at sales@autoconnect.com for more info!')">Contact Seller</button>
+                    </div>
+                </div>
+                <!-- Car 3 -->
+                <div class="car-card">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.team-bhp.com%2Fforum%2Fattachments%2Findian-car-scene%2F2003111d1588920972-bmw-8-series-gran-coupe-launched-rs-1-30-crore-firstever-bmw-8-series-gran-coupe.jpg&f=1&nofb=1&ipt=39802eabc3de9ce8caa0fb3e731e6067cf51c0c054eb51f41d8388c59eba57d9" alt="Coupe">
+                    <div class="car-info">
+                        <h3>2023 Velocity Coupe</h3>
+                        <p class="price">₹1.31cr</p>
+                        <p class="details">Mileage: 17 - 25Kms | Automatic | 4-Door</p>
+                        <button class="btn" onclick="alert('Contact us at sales@autoconnect.com for more info!')">Contact Seller</button>
+                    </div>
+                </div>
+                <!-- Car 4 -->
+                <div class="car-card">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.firstpost.com%2Fwp-content%2Fuploads%2F2021%2F08%2Ftata-tigor-ev-ziptron-unveiled-launch-on-31-august-to-be-indias-most-affordable-electric-car.jpg&f=1&nofb=1&ipt=a84ffc0ea8f32190bb4fc7e4b394ea9bcd6afd1935ef277b51c807ea8d51844b" alt="EV">
+                    <div class="car-info">
+                        <h3>2024 Eco-Volt EV</h3>
+                        <p class="price">₹8 Lacks</p>
+                        <p class="details">Mileage: 140 - 180Kms | Automatic | 4-Door</p>
+                        <button class="btn" onclick="alert('Contact us at sales@autoconnect.com for more info!')">Contact Seller</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page hidden">
+            <h1 class="page-title">About AutoConnect</h1>
+            <div class="content-box">
+                <p>Welcome to <strong>AutoConnect</strong>, your trusted source for high-quality pre-owned vehicles. We were founded on a simple idea: to make the car buying process transparent, easy, and enjoyable. Our team is passionate about cars and dedicated to helping you find the perfect vehicle to fit your needs and budget.</p>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page hidden">
+            <h1 class="page-title">Get In Touch</h1>
+            <div class="content-box">
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for your message!');">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 AutoConnect Sales. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all page sections
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.add('hidden');
+            });
+
+            // Show the selected page section
+            document.getElementById(pageId).classList.remove('hidden');
+
+            // Update the active state in the navigation
+            document.querySelectorAll('.nav-link a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick').includes(pageId)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Scroll to the top of the page
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
